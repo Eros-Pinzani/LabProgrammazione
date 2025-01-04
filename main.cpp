@@ -15,8 +15,8 @@ int main() {
     const Message message1 (user1, user2, "Hi Maurizio!");
     const Message message2 (user2, user1, "Hello Silvia!");
 
-    const Message message3 (user1, user3, "Hi Rosanna!");
-    const Message message4 (user3, user1, "Hello Silvia!");
+    const Message message3 (user1, user3, "Good morning Rosanna!");
+    const Message message4 (user3, user1, "Hi Silvia! How are you?");
 
     try {
         chat.addMessage(message1);
@@ -26,6 +26,8 @@ int main() {
         chat2.addMessage(message3);
         chat2.addMessage(message4);
         chat2.displayChat();
+
+        //chat2.addMessage(message1); // This line will throw an exception
     } catch (const std::runtime_error &e) {
         std::cerr << e.what() << std::endl;
     }
