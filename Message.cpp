@@ -9,5 +9,5 @@ std::shared_ptr<User> Message::getReceiver() const {
 }
 
 void Message::display() const{
-    std::cout << "From: " << sender->getName() << " To: " << receiver->getName() << " Message: " << content << std::endl;
+    std::cout << "From " << sender->getName() << " To " << receiver->getName() << " - Message: " << content << std::endl;
 }

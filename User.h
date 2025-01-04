@@ -2,10 +2,11 @@
 #define USER_H
 
 #include <string>
+#include <utility>
 
 class User {
 public:
-    explicit User(const std::string& name) : name(name) {}
+    explicit User(std::string  name) : name(std::move(name)) {}
     std::string getName() const;
 
 private:

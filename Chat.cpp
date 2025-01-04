@@ -13,4 +13,5 @@ void Chat::displayChat() const {
     for (const auto &message : messages) {
         message.display();
     }
+    std::cout << "------------------------------" << std::endl;
 }
