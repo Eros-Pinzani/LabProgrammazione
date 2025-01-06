@@ -3,7 +3,7 @@
 
 TEST(ChatTest, AddMessageAndDisplay) {
     auto user1 = std::make_shared<User>("Eros");
-    auto user2 = std::make_shared<User>("Irene");
+    auto user2 = std::make_shared<User>("Silvia");
     Chat chat(user1, user2);
     Message message1(user1, user2, "Hello, how are you?");
     Message message2(user2, user1, "Hi, I'm fine, thank you!");
@@ -14,13 +14,13 @@ TEST(ChatTest, AddMessageAndDisplay) {
     chat.displayChat();
     std::string output = testing::internal::GetCapturedStdout();
 
-    ASSERT_EQ(output, "Chat between Eros and Irene: \nFrom Eros To Irene - Message: Hello, how are you?\nFrom Irene To Eros - Message: Hi, I'm fine, thank you!\n------------------------------\n");
+    ASSERT_EQ(output, "Chat between Eros and Silvia: \nFrom Eros To Silvia - Message: Hello, how are you?\nFrom Silvia To Eros - Message: Hi, I'm fine, thank you!\n------------------------------\n");
 }
 
 TEST(ChatTest, AddMessageException) {
     auto user1 = std::make_shared<User>("Eros");
-    auto user2 = std::make_shared<User>("Irene");
-    auto user3 = std::make_shared<User>("Alessandro");
+    auto user2 = std::make_shared<User>("Silvia");
+    auto user3 = std::make_shared<User>("Maurizio");
     Chat chat(user1, user2);
     Message message(user1, user3, "Hello, how are you?");
 
