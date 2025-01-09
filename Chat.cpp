@@ -8,10 +8,44 @@ void Chat::addMessage(const Message &message) {
         throw std::runtime_error("This message doesn't belong to this chat.");
 }
 
-void Chat::displayChat() const {
-    std::cout << "Chat between " << user1->getName() << " and " << user2->getName() << ": " << std::endl;
-    for (const auto &message : messages) {
-        message.display();
+std::string Chat::readMessage(const int i) {
+    if (i >= messages.size()) {
+        throw std::out_of_range("Message index out of range.");
     }
-    std::cout << "------------------------------" << std::endl;
+    Message& message = messages[i];
+    message.setRead();
+    return message.display();
+}
+
+size_t Chat::countMessages() const {
+    return messages.size();
+}
+
+size_t Chat::countUnreadMessages() const {
+    size_t counter = 0;
+    for (const auto &message : messages) {
+        if (!message.isRead()) {
+            ++counter;
+        }
+    }
+    return counter;
+}
+
+std::vector<std::string> Chat::searchMessage(const std::string &word) const {
+    std::vector<std::string> foundMessages;
+    for (const auto &message : messages) {
+        if (message.getContent().find(word) != std::string::npos) {
+            foundMessages.push_back(message.display());
+        }
+    }
+    return foundMessages;
+}
+
+std::string Chat::displayChat() const {
+    std::string chat = "Chat between " + user1->getName() + " and " + user2->getName() + ":\n";
+    for (const auto &message : messages) {
+        chat += message.display() + "\n";
+    }
+    chat += "------------------------------\n";
+    return chat;
 }

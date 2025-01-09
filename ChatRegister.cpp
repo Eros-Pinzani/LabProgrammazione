@@ -9,9 +9,26 @@ Chat & ChatRegister::CreateNewOrGetChat(const std::shared_ptr<User>& user1, cons
     return chatRegister[key];
 }
 
-void ChatRegister::displayChatRegister() const {
-    std::cout << "All chats in the register: " << std::endl;
+size_t ChatRegister::countChats() const {
+    return chatRegister.size();
+}
+
+std::vector<std::string> ChatRegister::searchMessages(const std::string &word) const {
+    std::vector<std::string> results;
     for (const auto &chat : chatRegister) {
-        std::cout << "Chat between " << chat.first.second<< " and " << chat.first.first << std::endl;
+        const auto chatMessages = chat.second.searchMessage(word);
+        results.insert(results.end(), chatMessages.begin(), chatMessages.end());
     }
+    if (results.empty()) {
+        results.push_back("No messages found containing the word '" + word + "'.");
+    }
+    return results;
+}
+
+std::string ChatRegister::displayChatRegister() const {
+    std::string registryOutput = "All chats in the register:\n";
+    for (const auto &chat : chatRegister) {
+        registryOutput += "Chat between " + chat.first.second + " and " + chat.first.first + "\n";
+    }
+    return registryOutput;
 }

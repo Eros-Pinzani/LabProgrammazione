@@ -6,12 +6,18 @@
 
 class User {
 public:
-    explicit User(std::string  name) : name(std::move(name)) {}
+    User(std::string name, std::string lastName, std::string phoneNumber, std::string profilePicturePath) :
+        firstName(std::move(name)), lastName(std::move(lastName)), phoneNumber(std::move(phoneNumber)), profilePicturePath(std::move(profilePicturePath)) {}
     std::string getName() const;
+    std::string getLastName() const;
+    std::string getPhoneNumber() const;
+    std::string getProfilePicturePath() const;
 
 private:
-    std::string name;
-
+    std::string firstName;
+    std::string lastName;
+    std::string phoneNumber;
+    std::string profilePicturePath;
 };
 
 #endif //USER_H
