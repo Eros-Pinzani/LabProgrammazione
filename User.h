@@ -3,11 +3,11 @@
 
 #include <string>
 #include <utility>
+#include <stdexcept>
 
 class User {
 public:
-    User(std::string name, std::string lastName, std::string phoneNumber, std::string profilePicturePath) :
-        firstName(std::move(name)), lastName(std::move(lastName)), phoneNumber(std::move(phoneNumber)), profilePicturePath(std::move(profilePicturePath)) {}
+    User(const std::string& name, const std::string& lastName, const std::string& phoneNumber, const std::string& profilePicturePath);
     std::string getName() const;
     std::string getLastName() const;
     std::string getPhoneNumber() const;

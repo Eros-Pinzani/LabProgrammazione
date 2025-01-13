@@ -8,7 +8,7 @@ void Chat::addMessage(const Message &message) {
         throw std::runtime_error("This message doesn't belong to this chat.");
 }
 
-std::string Chat::readMessage(const int i) {
+std::string Chat::readMessage(int i) {
     if (i >= messages.size()) {
         throw std::out_of_range("Message index out of range.");
     }

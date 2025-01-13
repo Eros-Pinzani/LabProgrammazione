@@ -4,15 +4,17 @@
 #include "User.h"
 
 int main() {
-    const auto user1 = std::make_shared<User>("Silvia", "Taddei", "1234567890", "path/to/picture1");
-    const auto user2 = std::make_shared<User>("Maurizio", "Pinzani", "0987654321", "path/to/picture2");
-    const auto user3 = std::make_shared<User>("Rosanna", "Cavicchi", "1357924680", "path/to/picture3");
-
-    ChatRegister chatRegister;
-    Chat &chat = chatRegister.CreateNewOrGetChat(user1, user2);
-    Chat &chat2 = chatRegister.CreateNewOrGetChat(user1, user3);
-
     try {
+        const auto user1 = std::make_shared<User>("Silvia", "Taddei", "1234567890", "path/to/picture1");
+        const auto user2 = std::make_shared<User>("Maurizio", "Pinzani", "0987654321", "path/to/picture2");
+        const auto user3 = std::make_shared<User>("Rosanna", "Cavicchi", "1357924680", "path/to/picture3");
+        //const auto user4 = std::make_shared<User>("", "", "", ""); // This line will throw an exception
+
+        ChatRegister chatRegister;
+        Chat &chat = chatRegister.CreateNewOrGetChat(user1, user2);
+        Chat &chat2 = chatRegister.CreateNewOrGetChat(user1, user3);
+
+
         const Message message1 (user1, user2, "Hi Maurizio!");
         const Message message2 (user2, user1, "Hello Silvia!");
 
@@ -49,6 +51,8 @@ int main() {
             std::cout << message << std::endl;
         }
         std::cout << "------------------------------" << std::endl;
+
+        std::cout << chatRegister.displayChatRegister() << std::endl;
     } catch (const std::runtime_error &e) {
         std::cerr << e.what() << std::endl;
     }
@@ -58,8 +62,6 @@ int main() {
     catch (const std::out_of_range &e) {
         std::cerr << e.what() << std::endl;
     }
-
-    std::cout << chatRegister.displayChatRegister() << std::endl;
 
     return 0;
 }
